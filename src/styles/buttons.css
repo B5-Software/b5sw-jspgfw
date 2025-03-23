@@ -1,0 +1,147 @@
+:root {
+  --glow-color: #a855f7;
+  --neon-color: #22d3ee;
+  --golden-gradient: linear-gradient(45deg, #f59e0b, #fcd34d, #fef3c7);
+  --glow-intensity: 1;
+}
+
+/* 基础按钮样式 */
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  letter-spacing: 0.5px;
+  margin: 0.5rem;
+}
+
+/* 按钮类型 */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #8b5cf6 100%);
+  background-size: 200% auto;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-neon {
+  background: transparent;
+  border: 2px solid var(--neon-color);
+  color: var(--neon-color);
+  text-shadow: 0 0 calc(5px * var(--glow-intensity)) var(--neon-color);
+  box-shadow: 
+    inset 0 0 calc(10px * var(--glow-intensity)) var(--neon-color),
+    0 0 calc(20px * var(--glow-intensity)) var(--neon-color);
+}
+
+.btn-3d {
+  background: #3b82f6;
+  color: white;
+  transform: perspective(500px) rotateX(15deg);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-golden {
+  background: var(--golden-gradient);
+  color: #4b5563;
+  border: 2px solid #fcd34d;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.btn-border-flow {
+  background: transparent;
+  color: var(--glow-color);
+  position: relative;
+}
+
+/* 尺寸 */
+.btn-xsmall { padding: 0.5rem 1rem; font-size: 0.875rem; }
+.btn-small { padding: 0.75rem 1.5rem; }
+.btn-large { padding: 1.25rem 2.5rem; font-size: 1.25rem; }
+.btn-xlarge { padding: 1.5rem 3rem; font-size: 1.5rem; }
+
+/* 动画 */
+@keyframes neonPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 涟漪效果 */
+.btn-ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+/* 其他状态 */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.btn-gradient:hover {
+  background-position: right center;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+}
+
+.btn-neon:hover {
+  animation: neonPulse 1.5s infinite;
+}
+
+.btn-3d:hover {
+  transform: perspective(500px) rotateX(20deg) translateY(-2px);
+}
+
+.btn-border-flow::before,
+.btn-border-flow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899, #8b5cf6);
+  z-index: -1;
+  animation: borderFlow 3s linear infinite;
+  background-size: 200% auto;
+}

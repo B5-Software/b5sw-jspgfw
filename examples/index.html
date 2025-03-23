@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B5-Software Progressive UI Framework 测试</title>
+    
+    <!-- 加载编译后的资源 -->
+    <link rel="stylesheet" href="../dist/styles.css">
+    <script src="../dist/index.js"></script>
+
+    <style>
+        /* 页面布局样式 */
+        body {
+            margin: 0;
+            padding: 2rem;
+            background: #1a1a1a;
+            font-family: system-ui, sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .demo-section {
+            margin: 3rem auto;
+            padding: 2rem;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .demo-card {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #a855f7;
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: #22d3ee;
+            border-bottom: 2px solid;
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #fcd34d;
+            margin: 0 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>B5-Software Progressive UI Framework 测试</h1>
+    
+    <!-- 主要按钮展示区 -->
+    <div class="demo-section">
+        <h2>核心按钮样式</h2>
+        <div class="button-grid">
+            <div class="demo-card">
+                <h3>玻璃拟态</h3>
+                <div id="glass-btn"></div>
+            </div>
+            
+            <div class="demo-card">
+                <h3>渐变流光</h3>
+                <div id="gradient-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>霓虹发光</h3>
+                <div id="neon-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>3D立体</h3>
+                <div id="3d-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>黄金质感</h3>
+                <div id="golden-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>边框流动</h3>
+                <div id="border-flow-btn"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 功能演示区 -->
+    <div class="demo-section">
+        <h2>按钮功能测试</h2>
+        <div class="button-grid">
+            <div class="demo-card">
+                <h3>禁用状态</h3>
+                <div id="disabled-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>自定义样式</h3>
+                <div id="custom-btn"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>尺寸演示</h3>
+                <div id="size-btns"></div>
+            </div>
+
+            <div class="demo-card">
+                <h3>动态创建</h3>
+                <div id="dynamic-app"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 使用全局变量
+        const { Button, createApp } = ProgressiveUI;
+
+        // 基础按钮示例
+        function createDemoButtons() {
+            // 玻璃按钮
+            document.getElementById('glass-btn').appendChild(
+                new Button({
+                    type: 'glass',
+                    text: 'Glass Style',
+                    size: 'large',
+                    onClick: () => console.log('Glass button clicked')
+                }).render()
+            );
+
+            // 渐变按钮
+            document.getElementById('gradient-btn').appendChild(
+                new Button({
+                    type: 'gradient',
+                    text: 'Gradient Flow',
+                    glowIntensity: 1.2,
+                    onClick: () => alert('Gradient button clicked!')
+                }).render()
+            );
+
+            // 霓虹按钮
+            document.getElementById('neon-btn').appendChild(
+                new Button({
+                    type: 'neon',
+                    text: 'Neon Glow',
+                    customStyles: { '--neon-color': '#10b981' },
+                    onClick: () => document.body.style.background = '#2a2a2a'
+                }).render()
+            );
+
+            // 3D按钮
+            document.getElementById('3d-btn').appendChild(
+                new Button({
+                    type: '3d',
+                    text: '3D Effect',
+                    size: 'xlarge'
+                }).render()
+            );
+
+            // 黄金按钮
+            document.getElementById('golden-btn').appendChild(
+                new Button({
+                    type: 'golden',
+                    text: 'Golden Style',
+                    ripple: false
+                }).render()
+            );
+
+            // 边框流动按钮
+            document.getElementById('border-flow-btn').appendChild(
+                new Button({
+                    type: 'border-flow',
+                    text: 'Animated Border',
+                    customStyles: { '--glow-color': '#ef4444' }
+                }).render()
+            );
+        }
+
+        // 功能测试
+        function createFeatureTests() {
+            // 禁用状态
+            document.getElementById('disabled-btn').appendChild(
+                new Button({
+                    type: 'gradient',
+                    text: 'Disabled Button',
+                    disabled: true
+                }).render()
+            );
+
+            // 自定义样式
+            document.getElementById('custom-btn').appendChild(
+                new Button({
+                    type: 'neon',
+                    text: 'Custom Style',
+                    customStyles: {
+                        '--neon-color': '#f43f5e',
+                        'border-radius': '24px',
+                        'font-weight': '800'
+                    },
+                    glowIntensity: 1.5
+                }).render()
+            );
+
+            // 尺寸演示
+            const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'];
+            sizes.forEach(size => {
+                document.getElementById('size-btns').appendChild(
+                    new Button({
+                        type: 'glass',
+                        text: `${size} Button`,
+                        size: size
+                    }).render()
+                );
+            });
+        }
+
+        // 使用createApp
+        function initDynamicApp() {
+            createApp({
+                render: () => {
+                    const btn = new Button({
+                        type: 'border-flow',
+                        text: 'Dynamic Button',
+                        size: 'xlarge'
+                    }).render();
+                    return btn.outerHTML;
+                }
+            }).mount('#dynamic-app');
+        }
+
+        // 初始化所有演示
+        function initDemo() {
+            createDemoButtons();
+            createFeatureTests();
+            initDynamicApp();
+        }
+
+        // 页面加载后执行
+        window.addEventListener('DOMContentLoaded', initDemo);
+    </script>
+</body>
+</html>
