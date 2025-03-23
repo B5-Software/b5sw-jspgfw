@@ -1,4 +1,4 @@
-# 🚀 b5sw-jspgfw Framework
+# 🚀 B5-Software Progressive UI Framework
 
 ✨ **Modern Web Components Made Simple**  
 🖌️ Styled Components | 🧩 Extensible Architecture | 🌈 Dynamic Themes
